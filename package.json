@@ -1,21 +1,33 @@
 {
   "name": "esbuild-plugin-istanbul",
   "version": "0.1.1",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "homepage": "https://github.com/abraha2d/esbuild-plugin-istanbul",
+  "bugs": {
+    "url": "https://github.com/abraha2d/esbuild-plugin-istanbul/issues"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Kevin Abraham",
+    "email": "abraha2d@westhousefarm.com"
+  },
   "files": [
     "lib"
   ],
-  "license": "MIT",
-  "devDependencies": {
-    "@types/node": "^20.8.6",
-    "esbuild": "^0.19.5",
-    "typescript": "^5.2.2"
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abraha2d/esbuild-plugin-istanbul.git"
+  },
+  "scripts": {
+    "prepublishOnly": "rm -rf lib && tsc"
   },
   "dependencies": {
     "nyc": "^15.1.0"
   },
-  "scripts": {
-    "prepublishOnly": "rm -rf lib && tsc"
+  "devDependencies": {
+    "@types/node": "^20.8.6",
+    "esbuild": "^0.19.5",
+    "typescript": "^5.2.2"
   }
 }
