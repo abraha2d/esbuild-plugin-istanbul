@@ -1,6 +1,6 @@
 {
   "name": "esbuild-plugin-istanbul",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "homepage": "https://github.com/abraha2d/esbuild-plugin-istanbul",
   "bugs": {
     "url": "https://github.com/abraha2d/esbuild-plugin-istanbul/issues"
