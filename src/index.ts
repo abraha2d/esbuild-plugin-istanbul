@@ -1,10 +1,12 @@
 import { OnLoadArgs, OnLoadOptions, OnLoadResult, Plugin } from "esbuild";
 import fs from "fs";
-import nyc from "nyc";
 
-export type IstanbulPluginPreloader =
-  | ((args: OnLoadArgs) => Promise<{ contents: string }>)
-  | undefined;
+import NYC from "nyc";
+import configUtil from "nyc/lib/config-util.js";
+
+export type IstanbulPluginPreloader = (
+  args: OnLoadArgs
+) => Promise<{ contents: string }>;
 
 export type IstanbulPluginConfig = {
   filter: OnLoadOptions["filter"];
@@ -17,15 +19,6 @@ const defaultPreloader: IstanbulPluginPreloader = async (args) => ({
   contents: await fs.promises.readFile(args.path, "utf-8"),
 });
 
-const istanbulLoader = async (
-  args: OnLoadArgs,
-  preloader: IstanbulPluginPreloader
-) => {
-  if (!preloader) preloader = defaultPreloader;
-  const { contents: inCode } = await preloader(args);
-  return nyc._transform(inCode, args.path) || inCode;
-};
-
 const esbuildPluginIstanbul = ({
   filter,
   loader,
@@ -34,10 +27,14 @@ const esbuildPluginIstanbul = ({
 }: IstanbulPluginConfig): Plugin => ({
   name,
   async setup(build) {
+    const { argv } = await configUtil();
+    const nyc = new NYC(argv);
+
     build.onLoad({ filter }, async (args) => {
       if (args.path.includes("node_modules")) return;
-      const contents = await istanbulLoader(args, preloader);
-      return { contents, loader };
+      const { contents: inCode } = await (preloader || defaultPreloader)(args);
+      const outCode = nyc._transform(inCode, args.path) || inCode;
+      return { contents: outCode, loader };
     });
   },
 });

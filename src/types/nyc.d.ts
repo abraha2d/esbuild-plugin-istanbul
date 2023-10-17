@@ -1,3 +1,2 @@
-declare module "nyc" {
-  export function _transform(code: string, filename: string): string | null;
-}
+declare module "nyc";
+declare module "nyc/lib/config-util.js";
