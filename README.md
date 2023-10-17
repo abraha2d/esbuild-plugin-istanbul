@@ -5,12 +5,31 @@ An [esbuild](https://esbuild.github.io/) loader that instruments code with [ista
 ## Usage
 
 ```js
-import esbuildPluginIstanbul from 'esbuild-plugin-istanbul';
+import esbuildPluginIstanbul from "esbuild-plugin-istanbul";
 
-const jsPlugin = esbuildPluginIstanbul("istanbul-loader-js", /\.[cm]?js$/, "js");
-const jsxPlugin = esbuildPluginIstanbul("istanbul-loader-jsx", /\.jsx$/, "jsx");
-const tsPlugin = esbuildPluginIstanbul("istanbul-loader-ts", /\.[cm]?ts$/, "ts");
-const tsxPlugin = esbuildPluginIstanbul("istanbul-loader-tsx", /\.tsx$/, "tsx");
+const jsPlugin = esbuildPluginIstanbul({
+  filter: /\.[cm]?js$/,
+  loader: "js",
+  name: "istanbul-loader-js",
+});
+
+const jsxPlugin = esbuildPluginIstanbul({
+  filter: /\.jsx$/,
+  loader: "jsx",
+  name: "istanbul-loader-jsx",
+});
+
+const tsPlugin = esbuildPluginIstanbul({
+  filter: /\.[cm]?ts$/,
+  loader: "ts",
+  name: "istanbul-loader-ts",
+});
+
+const tsxPlugin = esbuildPluginIstanbul({
+  filter: /\.tsx$/,
+  loader: "tsx",
+  name: "istanbul-loader-tsx",
+});
 
 await esbuild.build({
   plugins: [jsPlugin, jsxPlugin, tsPlugin, tsxPlugin],
