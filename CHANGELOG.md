@@ -7,18 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Ability to specify a custom loader to be used prior to instrumentation
+- This changelog
+
 ## [0.1.2] - 2023-10-17
 
 ### Added
 
-- Project metadata for npm.
+- Project metadata for npm
 
 ## [0.1.1] - 2023-10-17
 
 ### Fixed
 
-- Missing `.d.ts` on npm.
+- Missing `.d.ts` on npm
 
 ## [0.1.0] - 2023-10-17
 
-- Initial release.
+- Initial release
