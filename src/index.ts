@@ -19,7 +19,7 @@ const defaultPreloader: IstanbulPluginPreloader = async (args) => ({
   contents: await fs.promises.readFile(args.path, "utf-8"),
 });
 
-const esbuildPluginIstanbul = ({
+export const esbuildPluginIstanbul = ({
   filter,
   loader,
   name,
@@ -38,5 +38,3 @@ const esbuildPluginIstanbul = ({
     });
   },
 });
-
-export default esbuildPluginIstanbul;

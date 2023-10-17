@@ -5,7 +5,7 @@ An [esbuild](https://esbuild.github.io/) loader that instruments code with [ista
 ## Usage
 
 ```js
-import esbuildPluginIstanbul from "esbuild-plugin-istanbul";
+import { esbuildPluginIstanbul } from "esbuild-plugin-istanbul";
 
 const jsPlugin = esbuildPluginIstanbul({
   filter: /\.[cm]?js$/,
